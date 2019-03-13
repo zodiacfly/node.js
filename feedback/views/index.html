@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Comments</title>
+  <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+  <div class="header container">
+    <div class="page-header">
+      <h1>Customer feedback</h1>
+      <a class="btn btn-success" href="/post">Post</a>
+    </div>
+  </div>
+  <div class="comments container">
+    <ul class="list-group">
+      {{each comments}}
+      <li class="list-group-item">{{$value.name}}：{{$value.message}} <span class="pull-right">{{$value.dateTime}}</span></li>
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+</html>
