@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>CRUD-express</title>
+  <!-- Bootstrap core CSS -->
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="/public/css/main.css" rel="stylesheet">
+  <script src="/public/js/main.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+       
+        <a class="btn btn-success" href="/students/new">Add Student</a>
+        <br />
+        <br />
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Hobbies</th>
+                <th>Manipulate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ each students }}
+              <tr>
+                <td>{{ $value.id }}</td>
+                <td>{{ $value.name }}</td>
+                <td>{{ if $value.gender == 0 }}Male{{ else if $value.gender == 1}}Female{{/if}}</td>
+                <td>{{ $value.age }}</td>
+                <td>{{ $value.hobbies }}</td>
+                <td>
+                  <a class="btn btn-warning" href="/students/edit?id={{ $value.id }}">Edit</a>
+                  <a class="btn btn-danger" href="/students/delete?id={{ $value.id }}">Delete</a>
+                </td>
+              </tr>
+              {{ /each }}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
