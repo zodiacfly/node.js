@@ -1,0 +1,4 @@
+{{extend './_layouts/home.html'}}
+
+{{block 'title'}}{{ if user}}{{ user.username}}'s page{{ else }} Hello World {{ /if }}{{/block}}
+
