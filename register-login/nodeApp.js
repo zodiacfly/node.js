@@ -26,10 +26,10 @@ app.use(function(req,res){
 })
 
 app.use(function(err,req,res,next){
-
+	
 	res.status(500).json({
 		err_code : 500,
-		message : err.message
+		message : 'opps...server down'
 	})
 })
 

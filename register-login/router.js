@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var user = require('./models/user.js')
 var md5 = require('blueimp-md5')
+var fs = require('fs')
 
 router.get('/',function(req,res){
 	res.render('index.html',{
@@ -29,7 +30,9 @@ router.post('/register',function(req,res,next){
 		if(data){
 			return res.status(200).json({
 				err_code : 1,
-				message : 'email or username has existed'
+				message : 'email or username has existed',
+				email : body.email,
+				username : body.username
 			})
 		}
 		body.password = md5(md5(body.password))
@@ -54,7 +57,11 @@ router.get('/login',function(req,res){
 
 router.post('/login',function(req,res,next){
 	var body = req.body
-
+	// fs.readFile('./ewe.js',function(err,data){
+	// 	if(err){
+	// 		return next(err)
+	// 	}
+	// })
 	user.findOne({
 		email : body.email,
 		password : md5(md5(body.password))
@@ -65,7 +72,8 @@ router.post('/login',function(req,res,next){
 		if(!data){
 			return res.status(200).json({
 				err_code : 1,
-				message : 'invaild username or password'
+				message : 'invaild username or password',
+				email : body.email
 			})
 		}
 		req.session.user = data

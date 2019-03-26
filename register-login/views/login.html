@@ -16,7 +16,7 @@
     <form id="login_form">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" autofocus>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -45,15 +45,23 @@
         data: formData,
         dataType: 'json',
         success: function (data) {
+
           var err_code = data.err_code
           var message = data.message
+          var email = data.email
+          
           if (err_code === 0) {
             window.location.href = '/'
           } else if (err_code === 1) {
             window.alert(message)
-          } else if (err_code === 500) {
-            window.alert(message)
+            document.querySelector('#email').value = email
+            document.querySelector('#password').value = ''
           }
+        },
+        error: function(XMLHttpRequest) {
+          var err = XMLHttpRequest.responseJSON
+          window.alert(err.message)
+           window.location.href = '/Opps...'
         }
       })
     })

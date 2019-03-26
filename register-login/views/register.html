@@ -43,15 +43,25 @@
         data: formData,
         dataType: 'json',
         success: function (data) {
+          
           var err_code = data.err_code
           var message = data.message
+          var email = data.email
+          var username = data.username
+
           if (err_code === 0) {
             window.location.href = '/'
           } else if (err_code === 1) {
             window.alert(message)
-          } else if (err_code === 500) {
-            window.alert(message)
+            document.querySelector('#email').value = email
+            document.querySelector('#password').value = ''
+            document.querySelector('#username').value = username
           }
+        },
+        error: function(XMLHttpRequest) {
+          var err = XMLHttpRequest.responseJSON
+          window.alert(err.message)
+          window.location.href = '/Opps...'
         }
       })
     })
