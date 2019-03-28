@@ -13,10 +13,12 @@
     <div class="header">
       <h1>Login</h1>
     </div>
+    <div id="invalid" style="color:red"></div>
     <form id="login_form">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" autofocus>
+        
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -49,11 +51,11 @@
           var err_code = data.err_code
           var message = data.message
           var email = data.email
-          
+
           if (err_code === 0) {
             window.location.href = '/'
           } else if (err_code === 1) {
-            window.alert(message)
+            document.querySelector('#invalid').innerHTML = message
             document.querySelector('#email').value = email
             document.querySelector('#password').value = ''
           }

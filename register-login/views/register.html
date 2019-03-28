@@ -13,6 +13,7 @@
     <div class="header">
       <h1>Register</h1>
     </div>
+    <div id="invalid" style="color:red"></div>
     <form id="register_form" method="post" action="/register">
       <div class="form-group">
         <label for="email">Email</label>
@@ -52,7 +53,7 @@
           if (err_code === 0) {
             window.location.href = '/'
           } else if (err_code === 1) {
-            window.alert(message)
+            document.querySelector('#invalid').innerHTML = message
             document.querySelector('#email').value = email
             document.querySelector('#password').value = ''
             document.querySelector('#username').value = username
